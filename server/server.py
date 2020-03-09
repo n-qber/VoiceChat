@@ -13,7 +13,10 @@ class Server:
         self.run = False
 
     def start(self, listen=None):
-        self._server.listen(listen)
+        if listen is None:
+            self._server.listen()
+        else:
+            self._server.listen(listen)
         self.run = True
         self.handle_clients()
         self.send_clients()
